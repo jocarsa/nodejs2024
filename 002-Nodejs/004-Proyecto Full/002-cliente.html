@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <body>
+        <div id="contenedor"></div>
+        <script>
+            fetch("http://localhost:3000/clientes")
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(datos){
+                console.log(datos)
+            })
+        </script>
+    </body>
+</html>

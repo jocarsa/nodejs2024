@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            main{
+                border:1px solid grey;
+                width:300px;
+                height:500px;
+                overflow-y:scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <input>
+        <main></main>
+        <script>
+            // envío de mensajes al servidor ////////////////////////////
+            let entrada = document.querySelector("input")
+            entrada.onchange = function(){
+                /*
+                mensaje = {"mensaje":this.value}
+                fetch("http://localhost:3000/insertar", {     // lLamo a crear un nuevo registro
+                  method: 'POST', 
+                  headers: {
+                    'Content-Type': 'application/json', 
+                  },
+                  body: JSON.stringify(mensaje)
+                })
+                .then(function(response){
+                    return response.json()
+                })
+                .then(function(datos){
+                    console.log(datos)
+                })*/
+            }
+            // recuperacion mensajes al servidor ////////////////////////////
+            let principal = document.querySelector("main")
+            var temporizador = setTimeout("bucle()",1000)
+            function bucle(){
+                fetch("http://localhost:3000/mensajes")
+                .then(function(response){
+                    return response.json()
+                })
+                .then(function(datos){
+                    document.querySelector("main").innerHTML =""
+                    datos.forEach(function(mensaje){
+                        document.querySelector("main").innerHTML += mensaje.mensaje+"<br>"
+                    })
+                })
+                clearTimeout(temporizador)
+                temporizador = setTimeout("bucle()",1000)
+            }
+        </script>
+    </body>
+</html>
